@@ -197,4 +197,17 @@ public class Tree
     {
         return TraversePostOrderIterative(root);
     }
+
+    private int GetHeight(Node root)
+    {
+        if (root.LeftChild == null && root.RightChild == null) 
+            return 0;
+        
+        return 1 + Math.Max(GetHeight(root.LeftChild), GetHeight(root.RightChild));
+    }
+
+    public int GetHeight()
+    {
+        return GetHeight(root);
+    }
 }

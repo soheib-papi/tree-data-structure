@@ -10,6 +10,6 @@ tree.Insert(9);
 tree.Insert(8);
 tree.Insert(10);
 
-tree.TraversePreOrderIterative();
+tree.GetHeight();
 
 Console.ReadLine();

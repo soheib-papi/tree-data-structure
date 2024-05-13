@@ -200,9 +200,15 @@ public class Tree
 
     private int GetHeight(Node root)
     {
-        if (root.LeftChild == null && root.RightChild == null) 
+        // Check if root is null
+        if (root == null)
+            return -1; // or return 0 if you consider an empty tree to have a height of 0
+
+        // If the node is a leaf node (both children are null), return 0
+        if (root.LeftChild == null && root.RightChild == null)
             return 0;
-        
+
+        // Otherwise, return 1 plus the maximum height of the left and right subtrees
         return 1 + Math.Max(GetHeight(root.LeftChild), GetHeight(root.RightChild));
     }
 

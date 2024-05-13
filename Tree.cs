@@ -20,6 +20,7 @@ public class Tree
     }
 
     private Node root;
+    List<int> list = new List<int>();
 
     public void Insert(int value)
     {
@@ -137,4 +138,58 @@ public class Tree
         }
     }
 
+    private List<int> TraversePostOrderIterative(Node node)
+    {
+        if (node == null)
+            return list;
+
+        Stack<Node> S = new Stack<Node>();
+        S.Push(node);
+        Node prev = null;
+
+        while (S.Count != 0)
+        {
+            Node current = S.Peek();
+
+            // go down the tree in search of a leaf an if so process it and pop stack otherwise move down
+            if (prev == null || prev.LeftChild == current || prev.RightChild == current)
+            {
+                if (current.LeftChild != null)
+                    S.Push(current.LeftChild);
+                else if (current.RightChild != null)
+                    S.Push(current.RightChild);
+                else
+                {
+                    S.Pop();
+                    list.Add(current.Value);
+                }
+            }
+            // go up the tree from left node, if the child is right push it onto stack otherwise process parent and pop stack
+            else if (current.LeftChild == prev)
+            {
+                if (current.RightChild != null)
+                    S.Push(current.RightChild);
+                else
+                {
+                    S.Pop();
+                    list.Add(current.Value);
+                }
+            }
+            // go up the tree from right node and after coming back from right node process parent and pop stack
+            else if (current.RightChild == prev)
+            {
+                S.Pop();
+                list.Add(current.Value);
+            }
+
+            prev = current;
+        }
+
+        return list;
+    }
+
+    public List<int> TraversePostOrderIterative()
+    {
+        return TraversePostOrderIterative(root);
+    }
 }

@@ -115,4 +115,26 @@ public class Tree
     {
         TraverseInOrderRecursive(root);
     }
+
+    private void TraversePreOrderIterative(Node root)
+    {
+        if (root == null)
+            return;
+
+        Stack<Node> stack = new Stack<Node>();
+        stack.Push(root);
+
+        while (stack.Count > 0)
+        {
+            Node node = stack.Pop();
+            Console.WriteLine(node.Value);
+
+            // Push right child before left child so that left child is processed first
+            if (node.RightChild != null)
+                stack.Push(node.RightChild);
+            if (node.LeftChild != null)
+                stack.Push(node.LeftChild);
+        }
+    }
+
 }

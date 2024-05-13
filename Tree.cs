@@ -138,7 +138,12 @@ public class Tree
         }
     }
 
-    private List<int> TraversePostOrderIterative(Node node)
+    public void TraversePreOrderIterative()
+    {
+        TraversePreOrderIterative(root);
+    }
+
+    private List<int> TraversePostOrderIterative(Node node) //doesn't work, must be debug
     {
         if (node == null)
             return list;
